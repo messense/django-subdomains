@@ -59,9 +59,9 @@ class SubdomainTestMixin(object):
         Returns the hostname for the provided subdomain.
         """
         if subdomain is not None:
-            host = '%s.%s' % (subdomain, self.site.domain)
+            host = '%s.%s' % (subdomain, self.DOMAIN)
         else:
-            host = '%s' % self.site.domain
+            host = '%s' % self.DOMAIN
         return host
 
 
