@@ -29,8 +29,10 @@ class SubdomainMiddleware(object):
         """
         Adds a ``subdomain`` attribute to the ``request`` parameter.
         """
-        domain, host = map(lower,
-            (self.get_domain_for_request(request), request.get_host()))
+        domain, host = map(
+            lower,
+            (self.get_domain_for_request(request), request.get_host())
+        )
 
         pattern = r'^(?:(?P<subdomain>.*?)\.)?%s(?::.*)?$' % re.escape(domain)
         matches = re.match(pattern, host)
@@ -40,8 +42,8 @@ class SubdomainMiddleware(object):
         else:
             request.subdomain = None
             logger.warning('The host %s does not belong to the domain %s, '
-                'unable to identify the subdomain for this request',
-                request.get_host(), domain)
+                           'unable to identify the subdomain for this request',
+                           request.get_host(), domain)
 
 
 class SubdomainURLRoutingMiddleware(SubdomainMiddleware):

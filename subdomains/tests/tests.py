@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, print_function
 import mock
 import warnings
 
@@ -46,6 +48,11 @@ class SubdomainTestMixin(object):
         )
     )
     def run(self, *args, **kwargs):
+        import django
+
+        if hasattr(django, 'setup'):
+            django.setup()
+
         super(SubdomainTestMixin, self).run(*args, **kwargs)
 
     def get_path_to_urlconf(self, name):
@@ -97,7 +104,8 @@ class SubdomainMiddlewareTestCase(SubdomainTestMixin, TestCase):
             self.middleware.process_request(request)
             return request.subdomain
 
-        with override_settings(REMOVE_WWW_FROM_DOMAIN=False):
+        with override_settings(BASE_DOMAIN='www.example.com',
+                               REMOVE_WWW_FROM_DOMAIN=False):
             self.assertEqual(host('www.%s' % self.DOMAIN), None)
 
             # Squelch the subdomain warning for cleaner test output, since we
@@ -114,7 +122,8 @@ class SubdomainMiddlewareTestCase(SubdomainTestMixin, TestCase):
             self.assertEqual(host('www.subdomain.www.%s' % self.DOMAIN),
                              'www.subdomain')
 
-        with override_settings(REMOVE_WWW_FROM_DOMAIN=True):
+        with override_settings(BASE_DOMAIN='www.example.com',
+                               REMOVE_WWW_FROM_DOMAIN=True):
             self.assertEqual(host('www.%s' % self.DOMAIN), 'www')
             self.assertEqual(host('subdomain.%s' % self.DOMAIN), 'subdomain')
             self.assertEqual(host('subdomain.www.%s' % self.DOMAIN),
