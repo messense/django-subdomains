@@ -2,7 +2,7 @@ install:
 	python setup.py install
 
 lint:
-	pip install --use-mirrors flake8
+	pip install flake8
 	flake8 ./subdomains
 
 clean:
@@ -12,7 +12,7 @@ test: clean
 	python setup.py test
 
 test-matrix: clean
-	pip install --use-mirrors tox
+	pip install tox
 	tox
 
 publish: lint test-matrix
