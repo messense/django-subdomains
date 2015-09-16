@@ -23,6 +23,7 @@ man/
 *.egg-info/
 .installed.cfg
 *.egg
+.eggs/
 
 # Installer logs
 pip-log.txt
