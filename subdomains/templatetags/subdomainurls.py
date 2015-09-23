@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 from django.template import Library
-
-from subdomains.compat.template import simple_tag
 from subdomains.utils import reverse
 
 
@@ -11,7 +9,7 @@ register = Library()
 UNSET = object()
 
 
-@simple_tag(register, takes_context=True)
+@register.simple_tag(takes_context=True)
 def url(context, view, subdomain=UNSET, *args, **kwargs):
     """
     Resolves a URL in a template, using subdomain-based URL resolution.
