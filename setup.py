@@ -17,9 +17,10 @@ except ImportError:
 
 
 install_requires = ['django']
-tests_require = install_requires + ['mock']
+tests_require = install_requires + ['pbr==1.6', 'mock']
 
-setup(name='django-subdomains',
+setup(
+    name='django-subdomains',
     version=version,
     url='http://github.com/tkaemming/django-subdomains/',
     author='ted kaemming',
