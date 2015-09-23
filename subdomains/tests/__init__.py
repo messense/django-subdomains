@@ -1,3 +1,4 @@
+import django
 from django.conf import settings
 
 if not settings.configured:
@@ -12,12 +13,15 @@ if not settings.configured:
                 'NAME': ':memory:',
             },
         },
-        SITE_ID=1,
         MIDDLEWARE_CLASSES=(
             'django.middleware.common.CommonMiddleware',
             'subdomains.middleware.SubdomainURLRoutingMiddleware',
         ),
     )
+
+    if django.VERSION >= (1, 7):
+        from django.apps import apps
+        apps.populate(settings.INSTALLED_APPS)
 
 
 from subdomains.tests.tests import *  # NOQA

@@ -48,11 +48,6 @@ class SubdomainTestMixin(object):
         )
     )
     def run(self, *args, **kwargs):
-        import django
-
-        if hasattr(django, 'setup'):
-            django.setup()
-
         super(SubdomainTestMixin, self).run(*args, **kwargs)
 
     def get_path_to_urlconf(self, name):
