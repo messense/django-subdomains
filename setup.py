@@ -20,9 +20,9 @@ install_requires = ['django']
 tests_require = install_requires + ['pbr==1.6', 'mock']
 
 setup(
-    name='django-subdomains',
+    name='djsubdomains',
     version=version,
-    url='http://github.com/tkaemming/django-subdomains/',
+    url='http://github.com/messense/django-subdomains',
     author='ted kaemming',
     author_email='ted@kaemming.com',
     description="Subdomain tools for the Django framework, including "
