@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse as simple_reverse
 
 
-def current_site_domain():
+def get_domain():
     domain = getattr(settings, 'BASE_DOMAIN', False)
 
     prefix = 'www.'
@@ -17,8 +17,6 @@ def current_site_domain():
         domain = domain.replace(prefix, '', 1)
 
     return domain
-
-get_domain = current_site_domain
 
 
 def urljoin(domain, path=None, scheme=None):
@@ -37,7 +35,8 @@ def urljoin(domain, path=None, scheme=None):
     return urlunparse((scheme, domain, path or '', None, None, None))
 
 
-def reverse(viewname, subdomain=None, scheme=None, args=None, kwargs=None, current_app=None):
+def reverse(viewname, subdomain=None, scheme=None,
+            args=None, kwargs=None, current_app=None):
     """
     Reverses a URL from the given parameters, in a similar fashion to
     :meth:`django.core.urlresolvers.reverse`.
@@ -55,7 +54,13 @@ def reverse(viewname, subdomain=None, scheme=None, args=None, kwargs=None, curre
     if subdomain is not None:
         domain = '%s.%s' % (subdomain, domain)
 
-    path = simple_reverse(viewname, urlconf=urlconf, args=args, kwargs=kwargs, current_app=current_app)
+    path = simple_reverse(
+        viewname,
+        urlconf=urlconf,
+        args=args,
+        kwargs=kwargs,
+        current_app=current_app
+    )
     return urljoin(domain, path, scheme=scheme)
 
 
