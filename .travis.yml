@@ -1,16 +1,22 @@
 language: python
-python:
-  - "2.6"
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
+sudo: false
+
 env:
-  - DJANGO='Django>=1.5,<1.6'
-  - DJANGO='Django>=1.6,<1.7'
-  - DJANGO='Django>=1.7,<1.8'
-  - DJANGO='Django>=1.8,<1.9'
+    - TOX_ENV=py26-django15
+    - TOX_ENV=py26-django16
+    - TOX_ENV=py27-django15
+    - TOX_ENV=py27-django16
+    - TOX_ENV=py27-django17
+    - TOX_ENV=py27-django18
+    - TOX_ENV=py33-django15
+    - TOX_ENV=py33-django16
+    - TOX_ENV=py33-django17
+    - TOX_ENV=py33-django18
+    - TOX_ENV=py34-django15
+    - TOX_ENV=py34-django16
+    - TOX_ENV=py34-django17
+    - TOX_ENV=py34-django18
 install:
-  - pip install $DJANGO
+    - pip install -U tox
 script:
-  - make test
+    - tox -e $TOX_ENV
