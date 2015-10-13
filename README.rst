@@ -1,4 +1,4 @@
-django-subdomains
+djsubdomains
 =================
 
 Subdomain helpers for the Django framework, including subdomain-based URL

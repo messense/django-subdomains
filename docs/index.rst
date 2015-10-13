@@ -1,4 +1,4 @@
-django-subdomains
+djsubdomains
 =================
 
 Subdomain helpers for the Django framework, including subdomain-based URL
@@ -12,11 +12,11 @@ This application is available via the
 be installed with any Python package manager, such as ``pip`` or ``easy_install``
 by running::
 
-    pip install django-subdomains
+    pip install djsubdomains
 
 or::
 
-    easy_install django-subdomains
+    easy_install djsubdomains
 
 It is highly recommended to use package version numbers when using this project
 as a dependency to ensure API consistency.
